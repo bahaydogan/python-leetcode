@@ -27,6 +27,34 @@ class Solution(object):
             s[i:i + k] = reversed(s[i:i + k])
         return ''.join(s)
 
+    def makeFancyString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = []
+        count = 0
+        prev_char = None
+
+        # leeetcode
+
+        for char in s:
+            if char == prev_char:
+                count += 1
+            else:
+                count = 1
+                prev_char = char
+
+            if count < 3:
+                result.append(char)
+
+        return ''.join(result)
+
+
+
+
+
+
 if __name__ == '__main__':
     s = Solution()
     print(s.reverseStr("abcdefg", 2))
