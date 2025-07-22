@@ -1,3 +1,6 @@
+import math
+
+
 class Solution(object):
     def removeSubfolders(self, folder):
         """
@@ -50,6 +53,28 @@ class Solution(object):
 
         return ''.join(result)
 
+    def maximumUniqueSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        seen = set()
+        left = 0
+        max_sum = -1
+        current_sum = 0
+
+        for right in range(len(nums)):
+            while nums[right] in seen:
+                seen.remove(nums[left])
+                current_sum -= nums[left]
+                left += 1
+
+            seen.add(nums[right])
+            current_sum += nums[right]
+            max_sum = max(max_sum, current_sum)
+
+        return max_sum
+
 
 
 
@@ -57,4 +82,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.reverseStr("abcdefg", 2))
+    print(s.maximumUniqueSubarray([4, 2, 4, 5, 6]))
