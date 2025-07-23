@@ -1,4 +1,5 @@
 import math
+from email.charset import add_alias
 
 
 class Solution(object):
@@ -75,11 +76,39 @@ class Solution(object):
 
         return max_sum
 
+    #1717
+    def maximumGain(self, s, x, y):
+        """
+        :type s: str
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        def remove_pairs(s, first, second, points):
+            stack = []
+            score = 0
 
+            for char in s:
+                if stack and stack[-1] == first and char == second:
+                    stack.pop()
+                    score += points
+                else:
+                    stack.append(char)
+
+            return ''.join(stack), score
+
+        if x >= y:
+            s, score1 = remove_pairs(s, 'a', 'b', x)
+            s, score2 = remove_pairs(s, 'b', 'a', y)
+        else:
+            s, score1 = remove_pairs(s, 'b', 'a', y)
+            s, score2 = remove_pairs(s, 'a', 'b', x)
+
+        return score1 + score2
 
 
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.maximumUniqueSubarray([4, 2, 4, 5, 6]))
+    print(s.maximumGain2("aabbaaxybbaabb", 4,5))
