@@ -106,9 +106,32 @@ class Solution(object):
 
         return score1 + score2
 
+    #1647
+    def minDeletions(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        from collections import Counter
+
+        freq = Counter(s)
+        freq_values = list(freq.values())
+        freq_values.sort(reverse=True)
+
+        deletions = 0
+        seen = set()
+                # aaa bbb cc
+        for f in freq_values:
+            while f > 0 and f in seen:
+                f -= 1
+                deletions += 1
+            seen.add(f)
+
+        return deletions
+
 
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.maximumGain2("aabbaaxybbaabb", 4,5))
+    print(s.minDeletions('aaabbbcc'))
