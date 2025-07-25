@@ -1,7 +1,3 @@
-import math
-from email.charset import add_alias
-
-
 class Solution(object):
     def removeSubfolders(self, folder):
         """
@@ -129,9 +125,28 @@ class Solution(object):
 
         return deletions
 
+    #3487
+    def maxSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if max(nums) < 0:
+            return max(nums)
 
+        nums_set = set(nums)
+
+        print(nums_set)
+        return_list = []
+        #nums = [1,1,0,1,1]
+        for num in nums_set:
+            print("num: "  + str(num))
+            if num >= 0:
+                return_list.append(num)
+        return sum(return_list)
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.minDeletions('aaabbbcc'))
+    list1 = [1,2,-1,-2,1,0,-1]
+    print(s.maxSum(list1))
