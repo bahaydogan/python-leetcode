@@ -145,8 +145,53 @@ class Solution(object):
                 return_list.append(num)
         return sum(return_list)
 
+    #2210
+    def countHillValley(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #nums =[6,6,5,5,4,1]
+        count = 0
+        n = len(nums)
+        for i in range(1, n - 1):
+            current = nums[i]
+            print("current : " + str(current))
+            prev = nums[i - 1]
+            nextt = nums[i + 1]
+
+            if current == nextt:
+                print("burdayız")
+                continue
+
+
+            while prev == current and prev != nums[0]:
+                i -= 1
+                prev = nums[i - 1]
+                print("new prev: " + str(prev))
+
+            while nextt == current and nextt != nums[-1]:
+                i += 1
+                nextt = nums[i + 1]
+                print("new next: " + str(nextt))
+            #nums =[6,6,5,5,4,1]
+
+
+
+            if current > prev and current > nextt:
+                count += 1
+                print("bastık: " + str(current))
+            elif current < prev and current < nextt:
+                count += 1
+                print("bastık: " + str(current))
+
+
+
+        return count
+
 
 if __name__ == '__main__':
     s = Solution()
-    list1 = [1,2,-1,-2,1,0,-1]
-    print(s.maxSum(list1))
+    nums =    [6, 6, 5, 5, 4, 1]
+    print(nums)
+    print(s.countHillValley(nums))
