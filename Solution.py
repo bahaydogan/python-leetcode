@@ -263,8 +263,47 @@ class Solution(object):
                 count += 1
         return count
 
+    #leetcode 166 ai solution:
+    def fractionToDecimal(self, numerator, denominator):
+        """
+        :type numerator: int
+        :type denominator: int
+        :rtype: str
+        """
+        if numerator == 0:
+            return "0"
+        if denominator == 0:
+            return "undefined"
+
+        result = []
+        if (numerator < 0) ^ (denominator < 0):
+            result.append("-")
+
+        numerator, denominator = abs(numerator), abs(denominator)
+        integer_part = numerator // denominator
+        result.append(str(integer_part))
+
+        remainder = numerator % denominator
+        if remainder == 0:
+            return ''.join(result)
+
+        result.append(".")
+        remainder_map = {}
+        while remainder != 0:
+            if remainder in remainder_map:
+                index = remainder_map[remainder]
+                result.insert(index, "(")
+                result.append(")")
+                break
+
+            remainder_map[remainder] = len(result)
+            remainder *= 10
+            digit = remainder // denominator
+            result.append(str(digit))
+            remainder %= denominator
+
+        return ''.join(result)
+
 if __name__ == '__main__':
     s = Solution()
-    nums = [555,901,482,1771]
-    print("nums: " +str(nums))
-    print(s.findNumbers(nums))
+    print(s.fractionToDecimal(4, 333))
