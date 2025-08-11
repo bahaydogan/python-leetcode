@@ -304,6 +304,34 @@ class Solution(object):
 
         return ''.join(result)
 
+    #leetcode 3423
+    def maxAdjacentDistance(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums or len(nums) < 2:
+            return 0
+
+        max_distance = 0
+        current_distance = 0
+        for i in range(len(nums)):
+            if i == len(nums) -1:
+                current_distance = abs(nums[i] - nums[0])
+            else:
+                current_distance = abs(nums[i] - nums[i + 1])
+            max_distance = max(max_distance, current_distance)
+
+        return max_distance
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     s = Solution()
-    print(s.fractionToDecimal(4, 333))
+    nums = [1, 2, 4]
+    print(s.maxAdjacentDistance(nums))  # Output: 0
