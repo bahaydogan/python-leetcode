@@ -324,11 +324,17 @@ class Solution(object):
 
         return max_distance
 
-
-
-
-
-
+    #leetcode 342
+    def isPowerOfFour(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        if n <= 0:
+            return False
+        while n % 4 == 0:
+            n //= 4
+        return n == 1
 
 
 if __name__ == '__main__':
