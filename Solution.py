@@ -360,6 +360,20 @@ class Solution(object):
 
         return count
 
+    #leetcode 3120 ai
+    def numberOfSpecialChars(self, word: str) -> int:
+        lower = set()
+        upper = set()
+        for c in word:
+            if c.islower():
+                lower.add(c)
+            elif c.isupper():
+                upper.add(c.lower())
+        count = 0
+        for l in lower:
+            if l in upper:
+                count += 1
+        return count
 
 
 if __name__ == '__main__':
